@@ -1,44 +1,34 @@
 #script to print prime numbers between two numbers
+
 if [ $# -ne 2 ]
 then
-echo "synatx is in $0 <no1><no2>"
+   echo "syntax is <$0> <no1> <no2> " 
+   exit 1
 fi
-if [ $# -eq 0 ]
+n1=$1
+n2=$2
+if [ $n1 -gt $n2 ]
 then
-echo "Enter lower limit:"
-read a
-echo "Enter upper limit:"
-read b
-else
-a=$1
-b=$2
+ t=$n1
+ n1=$n2 
+ n2=$t 
 fi
-if [ $a -gt $b ]
-then
-t=$a
-a=$b
-b=$t
-fi
-echo "prime numbers between $a and $b :"
-while [ $a -le $b ]
+while [ $n1 -le $n2 ]
 do
 i=2
-while [ $i -le `expr $a / 2` ]
+while [ $i -le `expr $n1 / 2` ]
 do
-if [ `expr $a % $i` -eq 0 ]
-then
+if [ `expr $n1 %  $i` -eq 0 ]
+then 
 break
 fi
 i=`expr $i + 1`
 done
-if [ $i -gt `expr $a / 2` ]
+if [ $i -gt `expr $n1 / 2` ]
 then
-echo -n "$a,"
+echo -n "$n1,"
 fi
-a=`expr $a + 1`
+n1=`expr $n1 + 1` 
 done
 echo "\n"
 exit 0
-
-
-
